@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
+import Actors from '../components/movies/Actors';
 import Films from '../components/movies/Films';
 
 export default function FilmsInfo() {
@@ -33,7 +34,12 @@ export default function FilmsInfo() {
 				});
 			}
 		}, [params.query]);
-		console.log(similarFilms);
+
+	function handleClick() {
+		window.scrollTo({ left: 0, behavior: 'smooth' });
+		console.log(0);
+	}
+
 		return (
 		<div className='h-[100%]'>
 			<div className="w-[100%] h-[800px] bg-[linear-gradient(105.93deg,_#3B3B3B_1.22%,_#8A8A8A_99.05%)] flex flex-col items-center">
@@ -57,7 +63,10 @@ export default function FilmsInfo() {
 								<p className='text-[24px] font-medium'>None</p>
 							</div>
 							<div className="w-[1100px] h-[120px] flex justify-between items-center">
-								<img src="../../public/ArrowLeft.png" alt="" className='w-[50px] h-[50px]' />
+								<img src="../../public/ArrowLeft.png" alt="" className='w-[50px] h-[50px]' onClick={handleClick} />
+								<div className="w-[800px] h-[120px] overflow-hidden" >
+									<Actors id={params.id} />
+								</div>
 								<img src="../../public/ArrowRight.png" alt="" className='w-[50px] h-[50px]' />
 							</div>
 						</div>
