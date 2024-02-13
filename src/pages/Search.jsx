@@ -9,27 +9,28 @@ export default function Search({ itemsPerPage }) {
 	const [currentItems, setCurrentItems] = useState([]);
 
 	const location = useLocation();
-	const queryParams = {};
+	const params = {};
 	const queryString = location.search.substring(1);
 	const paramsArray = queryString.split('&');
 
 	paramsArray.forEach(param => {
 		const [key, value] = param.split('=');
-		queryParams[key] = value ? value.replace(/\+/g, ' ') : '';
+		const replacedValue = value.replaceAll("%20", " ");
+		params[key] = replacedValue ? replacedValue.replace(/\+/g, ' ') : '';
 	});
 
 	useEffect(() => {
-		if (queryParams.query) {
-			fetch(`https://api.themoviedb.org/3/search/movie?api_key=d91b4b2e8fb2707acd809975c49bcf87&query=${queryParams.query}`)
+		if (params.query) {
+			fetch(`https://api.themoviedb.org/3/search/movie?api_key=d91b4b2e8fb2707acd809975c49bcf87&query=${params.query}`)
 				.then(response => response.json())
 				.then(data => {
-					setSearchFilms({ title: queryParams.query, results: data.results });
+					setSearchFilms({ title: params.query, results: data.results });
 				})
 				.catch(error => {
 					console.error(`Error ${error}`);
 				});
 		}
-	}, [queryParams.query]);
+	}, [params.query]);
 
 	useEffect(() => {
 		const endOffset = itemOffset + itemsPerPage;
@@ -45,10 +46,10 @@ export default function Search({ itemsPerPage }) {
 
 	return (
 		<div className='w-[100%] h-[100%] flex flex-col justify-center items-center'>
-			<div className="w-[1660px] h-[100%] flex flex-col justify-center items-center">
+			<div className="w-[1660px] h-[100%] flex flex-col justify-center items-center pb-[100px]">
 				{searchFilms.results.length !== 0 && (
 					<>
-						<Films data={searchFilms.results} type="paginate" currentItems={currentItems} />
+						<Films data={searchFilms} type="paginate" currentItems={currentItems} query={params.query} />
 						<ReactPaginate
 							breakLabel="..."
 							nextLabel="next >"

@@ -1,6 +1,25 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-export default function Film({ films, currentItems }) {
+export default function Film({ films, type, currentItems, query }) {
+	if (type==="similar") {
+		const location = useLocation();
+		const params = {};
+		const queryString = location.search.substring(1);
+		const paramsArray = queryString.split('&');
+
+		paramsArray.forEach(param => {
+			const [key, value] = param.split('=');
+			const replacedValue = value.replaceAll("%20", " ");
+			params[key] = replacedValue ? replacedValue.replace(/\+/g, ' ') : '';
+		});
+
+		films = films.filter(el => {
+			if (el.id!==(+params.id)) {
+				return el
+			}
+		})
+	}
 	return (
 		<>
 			<div className="flex gap-5">
@@ -10,7 +29,7 @@ export default function Film({ films, currentItems }) {
 						<div className='w-[400px] h-[560px] rounded-[30px] border-[3px] border-[#FBFF40] flex flex-col items-center' key={`film ${index}`}>
 								<div className="w-[350px] py-[25px] flex flex-col gap-[10px]">
 									<img src={"https://image.tmdb.org/t/p/w500/" + el.backdrop_path} alt="" className='w-[350px] h-[400px] object-cover rounded-[30px] ' />
-									<p className='text-[20px] font-prompt font-bold leading-[30.24px] cursor-pointer'>{el.title}</p>
+									<Link to={currentItems!==undefined ? `/film?query=${query}&id=${el.id}` : `/film?hi`}><p className='text-[20px] font-prompt font-bold leading-[30.24px] cursor-pointer'>{el.title}</p></Link>
 									<div className="flex pt-6 justify-between">
 										<div className="flex gap-2 justify-center items-start">
 											<img src="../../../public/Time.png" alt="" className='w-[24px] h-[24px] ' />
