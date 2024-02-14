@@ -40,7 +40,7 @@ export default function Film({ films, type, currentItems, query }) {
 	}
 	return (
 		<>
-			<div className="flex gap-5 justify-center items-center">
+			<div className="flex gap-5 justify-center items-center flex-wrap">
 				{films.length === 0 && (
 					<div className='w-[800px] h-[80px] rounded-[30px] border-[3px] border-[#FBFF40] flex justify-center items-center'>
 						<p className='text-[25px] font-prompt font-bold leading-[30.24px]'>No films available</p>
@@ -48,7 +48,7 @@ export default function Film({ films, type, currentItems, query }) {
 				)}
 
 				{films.map((el, index) => (
-					index < 4 && (
+					(index < 4 || type==="liked") && (
 						<div className='w-[400px] h-[560px] rounded-[30px] border-[3px] border-[#FBFF40] flex flex-col items-center' key={`film ${index}`}>
 							<div className='w-[350px] py-[25px] flex flex-col gap-[10px]'>
 								<img src={'https://image.tmdb.org/t/p/w500/' + el.backdrop_path} alt='' className='w-[350px] h-[400px] object-cover rounded-[30px]' />
