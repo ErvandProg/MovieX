@@ -4,6 +4,7 @@ import Film from './Film';
 export default function Films({ data, type="default", currentItems=undefined, query }) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [filmBase, setFilmBase] = useState(currentItems);
+	
 	useEffect(() => {
 		return () => {
 			setFilmBase(currentItems)
@@ -20,7 +21,6 @@ export default function Films({ data, type="default", currentItems=undefined, qu
 	return (
 		<div className='flex flex-col justify-center items-center pb-[40px]'>
 			{isLoading && <img src="../../../public/loading.gif" alt="" />}
-
 			{!isLoading && (
 				<>
 					{
@@ -48,6 +48,14 @@ export default function Films({ data, type="default", currentItems=undefined, qu
 							<div className="w-[1660px] flex flex-col gap-[60px] py-[80px]">
 								<p className='font-bold text-[40px] font-prompt'>{data.title}</p>
 								<Film films={data.results} type="similar" query={query} />
+							</div>
+						)
+					}
+					{
+						type === "liked" && (
+							<div className="w-[1660px] flex flex-col gap-[60px] py-[105px]">
+								<p className='font-bold text-[40px] font-prompt text-center'>{data.title}</p>
+								<Film films={data.results} query={query} />
 							</div>
 						)
 					}
