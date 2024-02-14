@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Actors from '../components/movies/Actors';
 import Films from '../components/movies/Films';
 import Trailers from '../components/movies/Trailers';
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 
 export default function FilmsInfo() {
 	const [film, setFilm] = useState({});
 	const [similarFilms, setSimilarFilms] = useState({ title: "Similar films", results: [] });
 	const location = useLocation();
 	const params = {};
+
 	const queryString = location.search.substring(1);
 	const paramsArray = queryString.split('&');
 
@@ -59,12 +62,25 @@ export default function FilmsInfo() {
 					console.error(`Error ${error}`);
 				});
 		}
-		}, [params]);
+	}, [params]);
 
-	function handleClick() {
-		window.scrollTo({ left: 0, behavior: 'smooth' });
-	}
+	useEffect(() => {
+		const swiper = new Swiper('.swiper', {
+			direction: 'vertical',
+			loop: true,
+			pagination: {
+				el: '.swiper-pagination',
+			},
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			}
+		});
 
+		return () => {
+			swiper.destroy();
+		};
+	}, []);
 		return (
 		<div className='h-[100%]'>
 			<div className="w-[100%] h-[900px] bg-[linear-gradient(105.93deg,_#3B3B3B_1.22%,_#8A8A8A_99.05%)] flex flex-col items-center gap-10">
@@ -87,12 +103,12 @@ export default function FilmsInfo() {
 								<img src="../../public/RTX.png" alt="" className='w-[50px] h-[50px]' />
 								<p className='text-[24px] font-medium'>None</p>
 							</div>
-							<div className="w-[1100px] h-[120px] flex justify-between items-center">
-								<img src="../../public/ArrowLeft.png" alt="" className='w-[50px] h-[50px]' onClick={handleClick} />
-								<div className="w-[800px] h-[120px] overflow-hidden" >
+							<div className="swiper w-[1100px] h-[120px] flex justify-between items-center">
+								<img src="../../public/ArrowLeft.png" alt="" className='swiper-button-prev w-[50px] h-[50px]'/>
+								<div className="swiper-wrapper w-[800px] h-[120px] flex" >
 									<Actors id={params.id} />
 								</div>
-								<img src="../../public/ArrowRight.png" alt="" className='w-[50px] h-[50px]' />
+								<img src="../../public/ArrowRight.png" alt="" className='swiper-button-next w-[50px] h-[50px]' />
 							</div>
 						</div>
 					</div>

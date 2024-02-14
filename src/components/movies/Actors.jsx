@@ -18,7 +18,7 @@ export default function Actors(props) {
 	}, [id]);
 
 	return (
-		<div style={{ whiteSpace: 'nowrap', overflowX: 'auto' }}>
+		<div className='swiper-slide'>
 			{actors.map((el, index) => (
 				// Проверяем, что profile_path не равен null
 				el.profile_path !== null && (
