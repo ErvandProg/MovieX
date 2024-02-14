@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import Actors from '../components/movies/Actors';
 import Films from '../components/movies/Films';
+import Trailers from '../components/movies/Trailers';
 
 export default function FilmsInfo() {
 	const [film, setFilm] = useState({});
@@ -37,12 +38,11 @@ export default function FilmsInfo() {
 
 	function handleClick() {
 		window.scrollTo({ left: 0, behavior: 'smooth' });
-		console.log(0);
 	}
 
 		return (
 		<div className='h-[100%]'>
-			<div className="w-[100%] h-[800px] bg-[linear-gradient(105.93deg,_#3B3B3B_1.22%,_#8A8A8A_99.05%)] flex flex-col items-center">
+			<div className="w-[100%] h-[900px] bg-[linear-gradient(105.93deg,_#3B3B3B_1.22%,_#8A8A8A_99.05%)] flex flex-col items-center gap-10">
 				<div className="w-[1660px] flex gap-[120px] items-center justify-center">
 					<div className="h-[500px] flex">
 						<img src={"https://image.tmdb.org/t/p/w500/" + film.poster_path} alt="" className='w-[400px] h-[500px] rounded-[30px] object-cover' />
@@ -72,8 +72,11 @@ export default function FilmsInfo() {
 						</div>
 					</div>
 				</div>
+				<div className="w-[1660px]">
+					<Trailers id={params.id} />
+				</div>
 			</div>
-			<div className="w-[100%] h-[920px]">
+			<div className="w-[100%] h-[920px] flex justify-center items-center">
 				<Films data={similarFilms} type="similar" query={params.query} />
 			</div>
 		</div>
