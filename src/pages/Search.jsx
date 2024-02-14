@@ -30,7 +30,7 @@ export default function Search({ itemsPerPage }) {
 					console.error(`Error ${error}`);
 				});
 		}
-	}, [params.query]);
+	}, []);
 
 	useEffect(() => {
 		const endOffset = itemOffset + itemsPerPage;

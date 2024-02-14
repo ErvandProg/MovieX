@@ -6,6 +6,9 @@ export default function Home() {
 	const [rated, setRated] = useState({ title: "Most rated films", results: [], typeTwo: "top_rated" });
 
 	useEffect(() => {
+		if (window.location.href === "http://localhost:5173/login") {
+			window.location.href = "http://localhost:5173/"
+		}
 		fetch('https://api.themoviedb.org/3/movie/popular?api_key=d91b4b2e8fb2707acd809975c49bcf87')
 			.then(response => response.json())
 			.then(data => {

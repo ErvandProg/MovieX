@@ -4,8 +4,8 @@ import Modal from './Modal';
 export default function Trailers({ id }) {
 	id = +id;
 	const [trailers, setTrailers] = useState({ id: id, results: [] });
-	const [modal, setModal] = useState(false);
 	const [selectedKey, setSelectedKey] = useState("");
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	useEffect(() => {
 		if (id) {
@@ -22,7 +22,12 @@ export default function Trailers({ id }) {
 
 	function handleClick(key) {
 		setSelectedKey(key);
-		setModal(true);
+		setIsModalOpen(true);
+	}
+
+	function closeModal() {
+		setIsModalOpen(false);
+		setSelectedKey("");
 	}
 
 	return (
@@ -43,7 +48,7 @@ export default function Trailers({ id }) {
 					}
 				})}
 			</div>
-			{modal && <Modal id={selectedKey} />}
+			{isModalOpen && <Modal id={selectedKey} onClose={closeModal} />} {/* Pass onClose prop to Modal component */}
 		</div>
 	);
 }

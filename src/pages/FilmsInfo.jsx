@@ -62,7 +62,7 @@ export default function FilmsInfo() {
 					console.error(`Error ${error}`);
 				});
 		}
-	}, [params]);
+	}, []);
 
 	useEffect(() => {
 		const swiper = new Swiper('.swiper', {
