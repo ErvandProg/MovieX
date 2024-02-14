@@ -25,7 +25,7 @@ export default function FilmsInfo() {
 				.then(data => {
 					setSimilarFilms({ title: "Similar films", results: [...data.results] })
 					data.results.filter(el => {
-						if (el.id===+params.id) {
+						if (el.id === +params.id) {
 							setFilm(el);
 						}
 					})
@@ -33,8 +33,33 @@ export default function FilmsInfo() {
 				.catch(error => {
 					console.error(`Error ${error}`);
 				});
-			}
-		}, [params.query]);
+		} else if (params.type) {
+			fetch(`https://api.themoviedb.org/3/movie/${params.type}?api_key=d91b4b2e8fb2707acd809975c49bcf87&page=1`)
+				.then(response => response.json())
+				.then(data => {
+					data.results.filter(el => {
+						if (el.id === +params.id) {
+							setFilm(el);
+						}
+					})
+				})
+				.catch(error => {
+					console.error(`Error ${error}`);
+				});
+			fetch(`https://api.themoviedb.org/3/search/movie?api_key=d91b4b2e8fb2707acd809975c49bcf87&query=${film.title}`)
+				.then(response => response.json())
+				.then(data => {
+					data.results.filter(el => {
+						if (el.id !== +params.id) {
+							setSimilarFilms({ title: "Similar films", results: [...similarFilms.results, el] })
+						}
+					})
+				})
+				.catch(error => {
+					console.error(`Error ${error}`);
+				});
+		}
+		}, [params]);
 
 	function handleClick() {
 		window.scrollTo({ left: 0, behavior: 'smooth' });

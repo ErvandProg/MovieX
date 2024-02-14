@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Films from '../components/movies/Films';
 
 export default function Home() {
-	const [popular, setPopular] = useState({ title: "Most popular films", results: [] });
-	const [rated, setRated] = useState({ title: "Most rated films", results: [] });
+	const [popular, setPopular] = useState({ title: "Most popular films", results: [], typeTwo: "popular" });
+	const [rated, setRated] = useState({ title: "Most rated films", results: [], typeTwo: "top_rated" });
 
 	useEffect(() => {
 		fetch('https://api.themoviedb.org/3/movie/popular?api_key=d91b4b2e8fb2707acd809975c49bcf87')
 			.then(response => response.json())
 			.then(data => {
-				setPopular({ title: "Most popular films", results: data.results });
+				setPopular({ title: "Most popular films", results: data.results, typeTwo: "popular" });
 			})
 			.catch(error => {
 				console.error(`Error ${error}`);
@@ -18,7 +18,7 @@ export default function Home() {
 		fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=d91b4b2e8fb2707acd809975c49bcf87')
 			.then(response => response.json())
 			.then(data => {
-				setRated({ title: "Most rated films", results: data.results });
+				setRated({ title: "Most rated films", results: data.results, typeTwo: "top_rated" });
 			})
 			.catch(error => {
 				console.error(`Error ${error}`);
