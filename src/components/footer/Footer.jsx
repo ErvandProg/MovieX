@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
 	return (
@@ -16,7 +17,7 @@ export default function Footer() {
 					</div>
 				</div>
 				<div className="">
-					<p className='text-[40px] font-black font-prompt text-[#FFFFFF]'>Movie<span className='text-[50px] font-extrabold text-[#000]'>X</span></p>
+					<Link to="/"><p className='text-[40px] font-black font-prompt text-[#FFFFFF]'>Movie<span className='text-[50px] font-extrabold text-[#000]'>X</span></p></Link>
 				</div>
 			</div>
 		</div>
