@@ -29,7 +29,7 @@ export default function Films({ data, type="default", currentItems=undefined, qu
 								{data.map((el, index) => (
 									<div className="w-[1660px] flex flex-col gap-[60px] py-[80px]" key={index}>
 										<p className='font-bold text-[40px] font-prompt'>{el.title}</p>
-										<Film films={el.results} />
+										<Film films={el.results} typeTwo={el.typeTwo} />
 									</div>
 								))}
 							</>
@@ -55,7 +55,7 @@ export default function Films({ data, type="default", currentItems=undefined, qu
 						type === "liked" && (
 							<div className="w-[1660px] flex flex-col gap-[60px] py-[105px]">
 								<p className='font-bold text-[40px] font-prompt text-center'>{data.title}</p>
-								<Film films={data.results} query={query} />
+								<Film films={data.results} type='liked' query={query} />
 							</div>
 						)
 					}
