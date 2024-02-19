@@ -24,12 +24,8 @@ export default function Actors(props) {
 	useEffect(() => {
 		if (actors.length > 0) {
 			new Swiper('.swiper-container', {
-				slidesPerView: 4.5,
+				slidesPerView: 5,
 				spaceBetween: 20,
-				navigation: {
-					nextEl: '.swiper-button-next',
-					prevEl: '.swiper-button-prev',
-				},
 			})
 		}
 	}, [actors])
@@ -55,24 +51,6 @@ export default function Actors(props) {
 					</div>
 				))}
 			</div>
-			<div
-				className='swiper-button-prev'
-				style={{
-					position: 'absolute',
-					left: 0,
-					top: '50%',
-					transform: 'translateY(-50%)',
-				}}
-			></div>
-			<div
-				className='swiper-button-next'
-				style={{
-					position: 'absolute',
-					right: 0,
-					top: '50%',
-					transform: 'translateY(-50%)',
-				}}
-			></div>
 		</div>
 	)
 }

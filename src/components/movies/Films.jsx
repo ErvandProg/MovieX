@@ -26,7 +26,7 @@ export default function Films({
 								key={index}
 							>
 								<p className='font-bold text-[40px] font-prompt'>{el.title}</p>
-								<Film films={el.results} typeTwo={el.typeTwo} />
+								<Film films={el.results} type={type} />
 							</div>
 						))}
 					</>

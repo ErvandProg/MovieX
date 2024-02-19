@@ -11,6 +11,7 @@ export default function FilmsInfo() {
 		title: 'Similar films',
 		results: [],
 	})
+	const localFilm = JSON.parse(localStorage.getItem('film'))
 	const location = useLocation()
 	const params = {}
 
@@ -35,11 +36,10 @@ export default function FilmsInfo() {
 						title: 'Similar films',
 						results: [...data.results],
 					})
-					data.results.filter(el => {
-						if (el.id === +params.id) {
-							setFilm(el)
-						}
-					})
+					const foundFilm = data.results.find(el => el.id === +params.id)
+					if (foundFilm) {
+						setFilm(foundFilm)
+					}
 				})
 				.catch(error => {
 					console.error(`Error ${error}`)
@@ -48,10 +48,36 @@ export default function FilmsInfo() {
 					setIsLoading(false)
 				})
 		}
-	}, [])
+
+		if (localFilm) {
+			setFilm(localFilm)
+		}
+	}, [params.id])
+
+	useEffect(() => {
+		if (localFilm) {
+			fetch(
+				`https://api.themoviedb.org/3/movie/${localFilm.id}/similar?api_key=d91b4b2e8fb2707acd809975c49bcf87`
+			)
+				.then(response => response.json())
+				.then(data => {
+					setSimilarFilms({
+						title: 'Similar films',
+						results: [...data.results],
+					})
+				})
+				.catch(error => {
+					console.error(`Error ${error}`)
+				})
+				.finally(() => {
+					setIsLoading(false)
+					localStorage.removeItem('film')
+				})
+		}
+	}, [localFilm])
 
 	return (
-		<div className='h-[100%] w-[100%] felx justify-center items-center'>
+		<div className='h-[100%] w-[100%] flex flex-col justify-center items-center'>
 			{isLoading && (
 				<img src='./../../public/loading.gif' className='w-[220px] h-[130px]' />
 			)}
