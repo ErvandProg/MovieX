@@ -9,6 +9,11 @@ import Search from './pages/Search';
 if (!localStorage.getItem("login") && window.location.href !== "http://localhost:5173/login") {
 	window.location.href = "/login";
 }
+
+if (localStorage.getItem("login") && window.location.href === "http://localhost:5173/login") {
+	window.location.href = "/"
+}
+
 export default function App() {
 	return (
 		<BrowserRouter>
@@ -18,7 +23,7 @@ export default function App() {
 					<Route path='/search' element={<Search itemsPerPage={4} />} />
 					<Route path='/film' element={<FilmsInfo />} />
 					<Route path='/likes' element={<Liked />} />
-					<Route path='/login' element={<Login />} />
+					<Route path='/login' element={!localStorage.getItem("login") ? (<Login />) : (<Home />)} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
