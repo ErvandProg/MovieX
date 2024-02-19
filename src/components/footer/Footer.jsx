@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function Footer() {
 	return (
 		<div className='w-[100%] h-[250px] bg-[#FFF500] flex justify-center items-center'>
-			<div className='w-[1660px] max-[1765px]:w-[1100px] max-[1220px]:w-[700px] h-[250px] flex justify-between items-center'>
+			<div className='w-[1660px] max-[1765px]:w-[1100px] max-[1220px]:w-[700px] max-[705px]:w-[400px] h-[250px] flex justify-between items-center'>
 				<div className='flex justify-center items-center gap-10'>
 					<div className=''>
 						<svg

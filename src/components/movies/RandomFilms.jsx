@@ -42,7 +42,7 @@ export default function RandomFilms() {
 						popular.results[randomNums[0]].id
 					}`}
 				>
-					<div className='w-[820px] h-[500px] rounded-[30px] relative max-[1220px]:w-[600px] max-[1220px]:h-[400px]'>
+					<div className='w-[820px] h-[500px] rounded-[30px] relative max-[1220px]:w-[600px] max-[705px]:w-[400px] max-[705px]:h-[400px] max-[1220px]:h-[400px]'>
 						<img
 							src={
 								'https://image.tmdb.org/t/p/w500/' +

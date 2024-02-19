@@ -44,7 +44,7 @@ export default function Films({
 					</div>
 				)}
 				{type === 'liked' && (
-					<div className='w-[1660px] max-[1765px]:w-[1200px] max-[1220px]:w-[700px] flex flex-col max-[1765px]:items-center max-[1765px]:justify-center flex-wrap gap-[60px] py-[105px]'>
+					<div className='w-[1660px] max-[1765px]:w-[1200px] max-[1220px]:w-[700px] max-[705px]:w-[320px] flex flex-col max-[1765px]:items-center max-[1765px]:justify-center flex-wrap gap-[60px] py-[105px]'>
 						<p className='font-bold text-[40px] font-prompt text-center'>
 							{data.title}
 						</p>
