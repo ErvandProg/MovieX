@@ -22,7 +22,7 @@ export default function Films({
 					<>
 						{data.map((el, index) => (
 							<div
-								className='w-[1660px] flex flex-col gap-[60px] py-[80px]'
+								className='w-[1660px] max-[1765px]:w-[1200px] flex flex-col max-[1765px]:items-center max-[1765px]:justify-center flex-wrap gap-[60px] py-[80px]'
 								key={index}
 							>
 								<p className='font-bold text-[40px] font-prompt'>{el.title}</p>
@@ -32,19 +32,19 @@ export default function Films({
 					</>
 				)}
 				{(type === 'default' || type === 'paginate') && (
-					<div className='w-[1660px] flex flex-col gap-[60px] py-[80px]'>
+					<div className='w-[1660px] max-[1765px]:w-[1200px] flex flex-col max-[1765px]:items-center max-[1765px]:justify-center flex-wrap gap-[60px] py-[80px]'>
 						<p className='font-bold text-[40px] font-prompt'>{data.title}</p>
 						<Film films={data.results} currentItems={filmBase} query={query} />
 					</div>
 				)}
 				{type === 'similar' && (
-					<div className='w-[1660px] flex flex-col gap-[60px] py-[80px]'>
+					<div className='w-[1660px] max-[1765px]:w-[1200px] flex flex-col max-[1765px]:items-center max-[1765px]:justify-center flex-wrap gap-[60px] py-[80px]'>
 						<p className='font-bold text-[40px] font-prompt'>{data.title}</p>
 						<Film films={data.results} type='similar' query={query} />
 					</div>
 				)}
 				{type === 'liked' && (
-					<div className='w-[1660px] flex flex-col gap-[60px] py-[105px]'>
+					<div className='w-[1660px] max-[1765px]:w-[1200px] flex flex-col max-[1765px]:items-center max-[1765px]:justify-center flex-wrap gap-[60px] py-[105px]'>
 						<p className='font-bold text-[40px] font-prompt text-center'>
 							{data.title}
 						</p>

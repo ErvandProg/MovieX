@@ -35,7 +35,7 @@ export default function RandomFilms() {
 	}, [])
 
 	return (
-		<div className='w-[1660px] flex gap-5 pt-[30px]'>
+		<div className='w-[1660px] max-[1765px]:w-[1200px] max-[1765px]:justify-center max-[1765px]:items-center flex flex-wrap gap-5 pt-[30px]'>
 			{popular.results.length > 0 && (
 				<Link
 					to={`/film?query=${popular.results[randomNums[0]].title}&id=${

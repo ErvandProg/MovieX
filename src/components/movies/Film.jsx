@@ -50,7 +50,7 @@ export default function Film({ films, type, query }) {
 
 				{films.map(
 					(el, index) =>
-						(index < 4 || type === 'liked') && (
+						(index < 4 || type === 'liked' || type === 'search') && (
 							<div
 								className='w-[400px] h-[560px] rounded-[30px] border-[3px] border-[#FBFF40] flex flex-col items-center'
 								key={`film ${index}`}
