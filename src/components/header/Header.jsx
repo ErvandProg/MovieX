@@ -44,9 +44,11 @@ export default function Header() {
 								alt=''
 								className='w-[50px] h-[50px]'
 							/>
-							<p className='w-[34px] h-[34px] rounded-[17px] flex justify-center items-center bg-[red] text-[white] text-[26px] font-extrabold absolute -right-[3px] -bottom-[14px]'>
-								{liked.results.length}
-							</p>
+							{liked.results.length > 0 && (
+								<p className='w-[34px] h-[34px] rounded-[17px] flex justify-center items-center bg-[red] text-[white] text-[26px] font-extrabold absolute -right-[3px] -bottom-[14px]'>
+									{liked.results.length}
+								</p>
+							)}
 						</div>
 					</Link>
 					<SearchInp />
