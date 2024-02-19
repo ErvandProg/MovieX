@@ -25,7 +25,7 @@ export default function Header() {
 
 	return (
 		<div className='w-[100%] py-[100px] bg-[linear-gradient(105.93deg,_#383838_1.22%,_#828282_99.05%)] flex flex-col justify-center items-center'>
-			<div className='w-[1660px] max-[1765px]:w-[1200px] flex justify-between items-center'>
+			<div className='w-[1660px] max-[1765px]:w-[1200px] max-[1220px]:w-[700px] flex justify-between items-center'>
 				<div>
 					<Link to='/'>
 						<p className='text-[40px] font-black font-prompt text-[#FFFFFF]'>
@@ -55,7 +55,7 @@ export default function Header() {
 				</div>
 			</div>
 			{activePage === 'home' && (
-				<div className='w-[1660px] max-[1765px]:w-[1100px] flex flex-col gap-[60px] max-[1765px]:items-center max-[1765px]:justify-center'>
+				<div className='w-[1660px] max-[1765px]:w-[1100px] flex flex-col gap-[60px] max-[1765px]:items-center max-[1765px]:justify-center max-[1220px]:w-[700px]'>
 					<RandomFilms />
 					<div className='w-[100%] flex flex-col gap-5'>
 						<p className='text-[30px] text-[#FAFF00] font-bold font-prompt'>
