@@ -41,9 +41,6 @@ export default function FilmsInfo() {
 						setFilm(foundFilm)
 					}
 				})
-				.catch(error => {
-					console.error(`Error ${error}`)
-				})
 				.finally(() => {
 					setIsLoading(false)
 				})
@@ -52,9 +49,7 @@ export default function FilmsInfo() {
 		if (localFilm) {
 			setFilm(localFilm)
 		}
-	}, [params.id])
 
-	useEffect(() => {
 		if (localFilm) {
 			fetch(
 				`https://api.themoviedb.org/3/movie/${localFilm.id}/similar?api_key=d91b4b2e8fb2707acd809975c49bcf87`
@@ -66,15 +61,14 @@ export default function FilmsInfo() {
 						results: [...data.results],
 					})
 				})
-				.catch(error => {
-					console.error(`Error ${error}`)
-				})
 				.finally(() => {
 					setIsLoading(false)
 					localStorage.removeItem('film')
 				})
 		}
-	}, [localFilm])
+	}, [params.id, localFilm])
+
+	useEffect(() => {}, [])
 
 	return (
 		<div className='h-[100%] w-[100%] flex flex-col justify-center items-center'>
