@@ -24,18 +24,21 @@ export default function Actors(props) {
 	useEffect(() => {
 		if (actors.length > 0) {
 			new Swiper('.swiper-container', {
-				slidesPerView: 5,
-				spaceBetween: 20,
+				slidesPerView: window.innerWidth <= 1015 ? 3 : 5,
+				spaceBetween: window.innerWidth <= 1015 ? 10 : 20,
 			})
 		}
 	}, [actors])
 
 	return (
 		<div
-			className='swiper-container'
+			className='swiper-container max-[1005px]:w-[500px]'
 			style={{ maxWidth: '1000px', overflow: 'hidden', position: 'relative' }}
 		>
-			<div className='swiper-wrapper' style={{ maxWidth: '800px' }}>
+			<div
+				className='swiper-wrapper max-[1005px]:w-[100%]'
+				style={{ maxWidth: '800px' }}
+			>
 				{actors.map((el, index) => (
 					<div className='swiper-slide' key={index} style={{ width: '120px' }}>
 						<img

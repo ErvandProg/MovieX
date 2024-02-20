@@ -77,8 +77,8 @@ export default function FilmsInfo() {
 			)}
 			{!isLoading && (
 				<>
-					<div className='w-[100%] h-[900px] bg-[linear-gradient(105.93deg,_#3B3B3B_1.22%,_#8A8A8A_99.05%)] flex flex-col items-center gap-10'>
-						<div className='w-[1660px] flex gap-[120px] items-center justify-center'>
+					<div className='w-[100%] bg-[linear-gradient(105.93deg,_#3B3B3B_1.22%,_#8A8A8A_99.05%)] flex flex-col items-center gap-10 justify-center'>
+						<div className='w-[1660px] max-[1660px]:w-[1000px] max-[1000px]:w-[400px] flex flex-wrap gap-[120px] items-center justify-center'>
 							<div className='h-[500px] flex'>
 								<img
 									src={'https://image.tmdb.org/t/p/w500/' + film.poster_path}
@@ -86,7 +86,7 @@ export default function FilmsInfo() {
 									className='w-[400px] h-[500px] rounded-[30px] object-cover'
 								/>
 							</div>
-							<div className='h-[500px] flex flex-col gap-5 text-[#fff]'>
+							<div className='flex flex-col gap-5 text-[#fff]'>
 								<p className='text-[40px] text-[#FAFF00] font-bold font-prompt'>
 									{film.original_title}
 								</p>
@@ -119,19 +119,19 @@ export default function FilmsInfo() {
 										/>
 										<p className='text-[24px] font-medium'>None</p>
 									</div>
-									<div className='w-[1100px] h-[120px]'>
-										<div className='w-[800px] h-[120px]'>
+									<div className='w-[1100px] max-[1100px]:w-[500px] h-[120px]'>
+										<div className='w-[800px] h-[120px] max-[1005px]:w-[400px]'>
 											<Actors id={params.id} />
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div className='w-[1660px]'>
+						<div className='w-[1660px] max-[1660px]:w-[1000px] max-[1000px]:w-[400px]'>
 							<Trailers id={params.id} />
 						</div>
 					</div>
-					<div className='w-[100%] h-[920px] flex justify-center items-center'>
+					<div className='w-[100%] flex justify-center items-center'>
 						<Films data={similarFilms} type='similar' query={params.query} />
 					</div>
 				</>

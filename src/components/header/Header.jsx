@@ -25,12 +25,12 @@ export default function Header() {
 
 	return (
 		<div className='w-[100%] py-[100px] bg-[linear-gradient(105.93deg,_#383838_1.22%,_#828282_99.05%)] flex flex-col justify-center items-center'>
-			<div className='w-[1660px] flex justify-between items-center'>
+			<div className='w-[1660px] max-[1765px]:w-[1200px] max-[705px]:w-[400px] max-[1220px]:w-[700px] flex justify-between items-center'>
 				<div>
 					<Link to='/'>
-						<p className='text-[40px] font-black font-prompt text-[#FFFFFF]'>
+						<p className='text-[40px] max-[705px]:text-[30px] font-black font-prompt text-[#FFFFFF]'>
 							Movie
-							<span className='text-[50px] font-extrabold text-[#FAFF00]'>
+							<span className='text-[50px] max-[705px]:text-[40px] font-extrabold text-[#FAFF00]'>
 								X
 							</span>
 						</p>
@@ -44,16 +44,18 @@ export default function Header() {
 								alt=''
 								className='w-[50px] h-[50px]'
 							/>
-							<p className='w-[34px] h-[34px] rounded-[17px] flex justify-center items-center bg-[red] text-[white] text-[26px] font-extrabold absolute -right-[3px] -bottom-[14px]'>
-								{liked.results.length}
-							</p>
+							{liked.results.length > 0 && (
+								<p className='w-[34px] h-[34px] rounded-[17px] flex justify-center items-center bg-[red] text-[white] text-[26px] font-extrabold absolute -right-[3px] -bottom-[14px]'>
+									{liked.results.length}
+								</p>
+							)}
 						</div>
 					</Link>
 					<SearchInp />
 				</div>
 			</div>
 			{activePage === 'home' && (
-				<div className='w-[1660px] flex flex-col gap-[60px]'>
+				<div className='w-[1660px] max-[1765px]:w-[1100px] flex flex-col gap-[60px] max-[1765px]:items-center max-[1765px]:justify-center max-[1220px]:w-[700px] max-[705px]:w-[400px]'>
 					<RandomFilms />
 					<div className='w-[100%] flex flex-col gap-5'>
 						<p className='text-[30px] text-[#FAFF00] font-bold font-prompt'>

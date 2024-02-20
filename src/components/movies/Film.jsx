@@ -41,7 +41,7 @@ export default function Film({ films, type, query }) {
 		<>
 			<div className='flex gap-5 justify-center items-center flex-wrap'>
 				{films.length === 0 && (
-					<div className='w-[800px] h-[80px] rounded-[30px] border-[3px] border-[#FBFF40] flex justify-center items-center'>
+					<div className='w-[800px] h-[80px] rounded-[30px] border-[3px] max-[1660px]:w-[600px] border-[#FBFF40] flex justify-center items-center max-[700px]:w-[400px]'>
 						<p className='text-[25px] font-prompt font-bold leading-[30.24px]'>
 							No films available
 						</p>
@@ -50,7 +50,7 @@ export default function Film({ films, type, query }) {
 
 				{films.map(
 					(el, index) =>
-						(index < 4 || type === 'liked') && (
+						(index < 4 || type === 'liked' || type === 'search') && (
 							<div
 								className='w-[400px] h-[560px] rounded-[30px] border-[3px] border-[#FBFF40] flex flex-col items-center'
 								key={`film ${index}`}

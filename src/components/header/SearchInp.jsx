@@ -17,7 +17,7 @@ export default function Search() {
 		<div className='relative flex items-center'>
 			<input
 				type='text'
-				className='w-[400px] h-[80px] text-white text-[26px] border-2 border-[#FAFF00] rounded-[40px] bg-inherit pl-[25px] pr-[60px]'
+				className='w-[400px] max-[705px]:w-[200px] max-[705px]:h-[60px] h-[80px] text-white text-[26px] border-2 border-[#FAFF00] rounded-[40px] bg-inherit pl-[25px] pr-[60px]'
 				onChange={handleChange}
 				onKeyDown={handleKeyDown}
 			/>

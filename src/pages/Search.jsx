@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import ReactPaginate from 'react-paginate'
 import { useLocation } from 'react-router-dom'
 import Films from '../components/movies/Films'
 
-export default function Search({ itemsPerPage }) {
-	const [itemOffset, setItemOffset] = useState(0)
+export default function Search() {
 	const [isLoading, setIsLoading] = useState(true)
 	const [searchFilms, setSearchFilms] = useState({ title: '', results: [] })
-	const [currentItems, setCurrentItems] = useState([])
 
 	const location = useLocation()
 	const params = {}
@@ -30,51 +27,23 @@ export default function Search({ itemsPerPage }) {
 				.then(data => {
 					setSearchFilms({ title: params.query, results: data.results })
 				})
-				.catch(error => {
-					console.error(`Error ${error}`)
-				})
 				.finally(() => {
 					setIsLoading(false)
 				})
 		}
 	}, [])
 
-	useEffect(() => {
-		const endOffset = itemOffset + itemsPerPage
-		setCurrentItems(searchFilms.results.slice(itemOffset, endOffset))
-	}, [itemOffset, searchFilms.results, itemsPerPage])
-
-	const pageCount = Math.ceil(searchFilms.results.length / itemsPerPage)
-
-	const handlePageClick = event => {
-		const newOffset =
-			(event.selected * itemsPerPage) % searchFilms.results.length
-		setItemOffset(newOffset)
-	}
-
 	return (
 		<>
-			{isLoading && <img src='./../../public/loading.gif' />}
+			{isLoading && (
+				<img src='./../../public/loading.gif' width='200px' height='100px' />
+			)}
 			{!isLoading && (
 				<div className='w-[100%] h-[100%] flex flex-col justify-center items-center'>
-					<div className='w-[1660px] h-[100%] flex flex-col justify-center items-center pb-[100px]'>
+					<div className='w-[1660px] h-[100%] max-[1700px]:w-[1000px] max-[1000px]:w-[400px] flex flex-col justify-center items-center pb-[100px]'>
 						{searchFilms.results.length !== 0 && (
 							<>
-								<Films
-									data={searchFilms}
-									type='paginate'
-									currentItems={currentItems}
-									query={params.query}
-								/>
-								<ReactPaginate
-									breakLabel='...'
-									nextLabel='next >'
-									onPageChange={handlePageClick}
-									pageRangeDisplayed={4}
-									pageCount={pageCount}
-									previousLabel='< previous'
-									renderOnZeroPageCount={null}
-								/>
+								<Films data={searchFilms} type='search' query={params.query} />
 							</>
 						)}
 						{searchFilms.results.length === 0 && (
