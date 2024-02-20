@@ -33,9 +33,9 @@ export default function Trailers({ id }) {
 	}
 
 	return (
-		<div className='w-[100%] flex-col gap-[10px] justify-between items-center text-center'>
+		<div className='w-[100%] flex-col gap-[10px] justify-between items-center text-center max-[1660px]:w-[1000px] max-[1000px]:w-[400px]'>
 			<p className='text-white text-[40px] font-bold'>Trailers</p>
-			<div className='w-[100%] h-[280px] flex justify-center items-center gap-5'>
+			<div className='w-[100%] flex flex-wrap max-[1660px]:flex-col pb-8 justify-center items-center gap-5'>
 				{trailers.results.map((el, index) => {
 					if (index < 4) {
 						return (
