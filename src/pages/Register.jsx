@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
-export default function Login() {
+export default function Register() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
-	let reg = JSON.parse(localStorage.getItem('register'))
-	console.log(reg.password === password)
-	const handleLogin = () => {
-		if (reg.email === email && reg.password === password) {
+	const emailReg = /^[a-z][a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@gmail.com$/gim
+	const passwordReg =
+		/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/
+
+	const handleRegister = () => {
+		if (emailReg.test(email) && passwordReg.test(password)) {
 			localStorage.setItem(
-				'login',
+				'register',
 				JSON.stringify({ email: email, password: password })
 			)
-			window.location.href = '/'
+			window.location.href = '/login'
 		}
 	}
 
@@ -45,11 +48,16 @@ export default function Login() {
 							/>
 						</div>
 						<button
-							onClick={handleLogin}
+							onClick={handleRegister}
 							className='w-4/5 text-[white] text-sm tracking-[2px] cursor-pointer bg-[#6bc4e3] px-0 py-[15px] rounded-[25px] border-[none] font-bold'
 						>
-							Login
+							Register
 						</button>
+					</div>
+					<div className=''>
+						<p className='text-center'>
+							Do have an account? <Link to='/'>Log In</Link>
+						</p>
 					</div>
 				</div>
 			</div>
