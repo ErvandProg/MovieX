@@ -11,7 +11,6 @@ export default function Header() {
 	const location = useLocation()
 
 	useEffect(() => {
-		// Check the pathname of the current location
 		if (location.pathname === '/' || location.pathname === '/home') {
 			setActivePage('home')
 		} else if (location.pathname === '/film') {

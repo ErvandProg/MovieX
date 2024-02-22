@@ -45,12 +45,8 @@ export default function FilmsInfo() {
 					setIsLoading(false)
 				})
 		}
-
 		if (localFilm) {
 			setFilm(localFilm)
-		}
-
-		if (localFilm) {
 			fetch(
 				`https://api.themoviedb.org/3/movie/${localFilm.id}/similar?api_key=d91b4b2e8fb2707acd809975c49bcf87`
 			)
@@ -68,7 +64,21 @@ export default function FilmsInfo() {
 		}
 	}, [params.id, localFilm])
 
-	useEffect(() => {}, [])
+	let randomNums = []
+	let newArray = []
+	getRandomNums(20, 20)
+
+	function getRandomNums(max, count) {
+		for (let index = 0; index < count; index++) {
+			let random = Math.floor(Math.random() * max)
+			if (randomNums.includes(random)) {
+				index--
+			} else {
+				randomNums.push(random)
+			}
+		}
+	}
+	console.log(randomNums)
 
 	return (
 		<div className='h-[100%] w-[100%] flex flex-col justify-center items-center'>
@@ -78,7 +88,7 @@ export default function FilmsInfo() {
 			{!isLoading && (
 				<>
 					<div className='w-[100%] bg-[linear-gradient(105.93deg,_#3B3B3B_1.22%,_#8A8A8A_99.05%)] flex flex-col items-center gap-10 justify-center'>
-						<div className='w-[1660px] max-[1660px]:w-[1000px] max-[1000px]:w-[400px] flex flex-wrap gap-[120px] items-center justify-center'>
+						<div className='w-[1660px] max-[1660px]:w-[1000px] max-[1000px]:w-[400px] flex max-[1660px]:flex-wrap gap-[120px] items-center justify-center'>
 							<div className='h-[500px] flex'>
 								<img
 									src={'https://image.tmdb.org/t/p/w500/' + film.poster_path}

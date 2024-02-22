@@ -12,7 +12,10 @@ export default function Home() {
 	})
 
 	useEffect(() => {
-		if (window.location.href === 'http://localhost:5173/login') {
+		if (
+			window.location.href === 'http://localhost:5173/login' ||
+			window.location.href === 'http://localhost:5173/register'
+		) {
 			window.location.href = 'http://localhost:5173/'
 		}
 		fetch(
@@ -20,9 +23,22 @@ export default function Home() {
 		)
 			.then(response => response.json())
 			.then(data => {
+				let randomNums = []
+				let newArr = []
+				for (let index = 0; index < 20; index++) {
+					let random = Math.floor(Math.random() * 20)
+					if (randomNums.includes(random)) {
+						index--
+					} else {
+						randomNums.push(random)
+					}
+				}
+				for (let index = 0; index < data.results.length; index++) {
+					newArr.push(data.results[randomNums[index]])
+				}
 				setPopular({
 					title: 'Most popular films',
-					results: data.results,
+					results: newArr,
 				})
 			})
 		fetch(
@@ -30,9 +46,22 @@ export default function Home() {
 		)
 			.then(response => response.json())
 			.then(data => {
+				let randomNums = []
+				let newArr = []
+				for (let index = 0; index < 20; index++) {
+					let random = Math.floor(Math.random() * 20)
+					if (randomNums.includes(random)) {
+						index--
+					} else {
+						randomNums.push(random)
+					}
+				}
+				for (let index = 0; index < data.results.length; index++) {
+					newArr.push(data.results[randomNums[index]])
+				}
 				setRated({
 					title: 'Most rated films',
-					results: data.results,
+					results: newArr,
 				})
 			})
 	}, [])
