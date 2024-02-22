@@ -11,7 +11,6 @@ export default function FilmsInfo() {
 		title: 'Similar films',
 		results: [],
 	})
-	const localFilm = JSON.parse(localStorage.getItem('film'))
 	const location = useLocation()
 	const params = {}
 
@@ -45,30 +44,7 @@ export default function FilmsInfo() {
 					setIsLoading(false)
 				})
 		}
-
-		if (localFilm) {
-			setFilm(localFilm)
-		}
-
-		if (localFilm) {
-			fetch(
-				`https://api.themoviedb.org/3/movie/${localFilm.id}/similar?api_key=d91b4b2e8fb2707acd809975c49bcf87`
-			)
-				.then(response => response.json())
-				.then(data => {
-					setSimilarFilms({
-						title: 'Similar films',
-						results: [...data.results],
-					})
-				})
-				.finally(() => {
-					setIsLoading(false)
-					localStorage.removeItem('film')
-				})
-		}
-	}, [params.id, localFilm])
-
-	useEffect(() => {}, [])
+	}, [params.id])
 
 	return (
 		<div className='h-[100%] w-[100%] flex flex-col justify-center items-center'>
@@ -78,7 +54,7 @@ export default function FilmsInfo() {
 			{!isLoading && (
 				<>
 					<div className='w-[100%] bg-[linear-gradient(105.93deg,_#3B3B3B_1.22%,_#8A8A8A_99.05%)] flex flex-col items-center gap-10 justify-center'>
-						<div className='w-[1660px] max-[1660px]:w-[1000px] max-[1000px]:w-[400px] flex flex-wrap gap-[120px] items-center justify-center'>
+						<div className='w-[1660px] max-[1660px]:w-[1000px] max-[1000px]:w-[400px] flex max-[1660px]:flex-wrap gap-[120px] items-center justify-center'>
 							<div className='h-[500px] flex'>
 								<img
 									src={'https://image.tmdb.org/t/p/w500/' + film.poster_path}

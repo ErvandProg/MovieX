@@ -32,35 +32,35 @@ export default function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
+				<Route
+					path='/login'
+					element={
+						!localStorage.getItem('login') &&
+						localStorage.getItem('register') ? (
+							<Login />
+						) : !localStorage.getItem('register') ? (
+							<Register />
+						) : (
+							<Home />
+						)
+					}
+				/>
+				<Route
+					path='/register'
+					element={
+						!localStorage.getItem('login') &&
+						!localStorage.getItem('register') ? (
+							<Register />
+						) : (
+							<Home />
+						)
+					}
+				/>
 				<Route path='/' element={<MainLayout />}>
 					<Route path='/' element={<Home />} />
 					<Route path='/search' element={<Search itemsPerPage={4} />} />
 					<Route path='/film' element={<FilmsInfo />} />
 					<Route path='/likes' element={<Liked />} />
-					<Route
-						path='/login'
-						element={
-							!localStorage.getItem('login') &&
-							localStorage.getItem('register') ? (
-								<Login />
-							) : !localStorage.getItem('register') ? (
-								<Register />
-							) : (
-								<Home />
-							)
-						}
-					/>
-					<Route
-						path='/register'
-						element={
-							!localStorage.getItem('login') &&
-							!localStorage.getItem('register') ? (
-								<Register />
-							) : (
-								<Home />
-							)
-						}
-					/>
 				</Route>
 			</Routes>
 		</BrowserRouter>
